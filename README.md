@@ -1,7 +1,6 @@
+## SQL and Relational Databases
 
-## SQL and Relational Databases [Suggested Time: 30 minutes]
-
-In this section you will be exploring a Pokemon dataset that has been put into SQL tables. Pokemon are fictional creatures from the [Nintendo franchise](https://en.wikipedia.org/wiki/Pok%C3%A9mon) of the same name.
+In this checkpoint you will be exploring a Pokemon dataset that has been put into SQL tables. Pokemon are fictional creatures from the [Nintendo franchise](https://en.wikipedia.org/wiki/Pok%C3%A9mon) of the same name.
 
 Some Pokemon facts that might be useful:
 * The word "pokemon" is both singular and plural. You may refer to "one pokemon" or "many pokemon".
@@ -38,15 +37,18 @@ Assign your SQL queries as strings to the variables `q1`, `q2`, etc. and run the
 
 **Important note on syntax**: use `double quotes ""` when quoting strings **within** your query and wrap the entire query in `single quotes ''`.
 
+**DO NOT MODIFY THE PYTHON CODE BELOW (e.g. `pd.read_sql`). YOU ONLY NEED TO MODIFY THE SQL QUERY STRINGS.**
+
 
 ```python
-# import the necessary libraries
+# Run this cell without changes
 import pandas as pd
 import sqlite3
 ```
 
 
 ```python
+# Run this cell without changes
 cnx = sqlite3.connect('data/pokemon.db')
 ```
 
@@ -97,4 +99,9 @@ pd.read_sql(q6, cnx)
 # q7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
 q7 = ''
 pd.read_sql(q7, cnx)
+```
+
+
+```python
+
 ```
