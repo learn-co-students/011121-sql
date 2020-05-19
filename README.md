@@ -66,9 +66,11 @@ cnx = sqlite3.connect('data/pokemon.db')
 cnx = sqlite3.connect('data/pokemon.db')
 ```
 
+### Question 1: Find all the pokemon on the "pokemon" table. Display all columns.
+
 
 ```python
-# q1: Find all the pokemon on the "pokemon" table. Display all columns. 
+# Enter appropriate SQL code within the quotes
 q1 = ''
 pd.read_sql(q1, cnx)
 ```
@@ -76,7 +78,6 @@ pd.read_sql(q1, cnx)
 
 ```python
 # __SOLUTION__ 
-# q1: Find all the pokemon on the "pokemon" table. Display all columns. 
 q1 = 'SELECT * FROM pokemon'
 pd.read_sql(q1, cnx)
 ```
@@ -205,9 +206,11 @@ pd.read_sql(q1, cnx)
 
 
 
+### Question 2: Find all the rows from the "pokemon_types" table where the type_id is 3.
+
 
 ```python
-# q2: Find all the rows from the "pokemon_types" table where the type_id is 3.
+# Enter appropriate SQL code within the quotes
 q2 = ''
 pd.read_sql(q2, cnx)
 ```
@@ -215,7 +218,6 @@ pd.read_sql(q2, cnx)
 
 ```python
 # __SOLUTION__ 
-# q2: Find all the rows from the "pokemon_types" table where the type_id is 3.
 q2 = 'SELECT * FROM pokemon_types WHERE type_id = 3'
 pd.read_sql(q2, cnx)
 ```
@@ -367,18 +369,27 @@ pd.read_sql(q2, cnx)
 
 
 
+### Question 3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
+
 
 ```python
-# q3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
-q3 = ''
+# Enter appropriate SQL code within the quotes
+q3 = '''
+
+'''
 pd.read_sql(q3, cnx)
 ```
 
 
 ```python
 # __SOLUTION__ 
-# q3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
-q3 = 'SELECT pokemon_types.* FROM pokemon_types INNER JOIN types ON types.id = pokemon_types.type_id WHERE types.name = "water"'
+q3 = '''
+SELECT pokemon_types.*
+FROM pokemon_types
+INNER JOIN types 
+    ON types.id = pokemon_types.type_id
+WHERE types.name = "water"
+'''
 pd.read_sql(q3, cnx)
 ```
 
@@ -607,18 +618,29 @@ pd.read_sql(q3, cnx)
 
 
 
+### Question 4: Find the names of all pokemon that have the "psychic" type.
+
 
 ```python
-# q4: Find the names of all pokemon that have the "psychic" type.
-q4 = ''
-# pd.read_sql(q4, cnx)
+# Enter appropriate SQL code within the quotes
+q4 = '''
+
+'''
+pd.read_sql(q4, cnx)
 ```
 
 
 ```python
 # __SOLUTION__ 
-# q4: Find the names of all pokemon that have the "psychic" type.
-q4 = 'SELECT pokemon.name FROM pokemon INNER JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id INNER JOIN types ON types.id = pokemon_types.type_id WHERE types.name = "psychic"'
+q4 = '''
+SELECT pokemon.name
+FROM pokemon
+INNER JOIN pokemon_types
+    ON pokemon_types.pokemon_id = pokemon.id
+INNER JOIN types
+    ON types.id = pokemon_types.type_id
+WHERE types.name = "psychic"
+'''
 pd.read_sql(q4, cnx)
 ```
 
@@ -709,18 +731,30 @@ pd.read_sql(q4, cnx)
 
 
 
+### Question 5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
+
 
 ```python
-# q5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
-q5 = ''
+# Enter appropriate SQL code within the quotes
+q5 = '''
+
+'''
 pd.read_sql(q5, cnx)
 ```
 
 
 ```python
 # __SOLUTION__ 
-# q5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
-q5 = 'SELECT AVG(weight), types.name FROM pokemon INNER JOIN pokemon_types ON pokemon_types.pokemon_id = pokemon.id INNER JOIN types ON types.id = pokemon_types.type_id GROUP by types.name ORDER BY AVG(weight) DESC'
+q5 = '''
+SELECT AVG(weight), types.name
+FROM pokemon
+INNER JOIN pokemon_types
+    ON pokemon_types.pokemon_id = pokemon.id
+INNER JOIN types
+    ON types.id = pokemon_types.type_id
+GROUP BY types.name
+ORDER BY AVG(weight) DESC
+'''
 pd.read_sql(q5, cnx)
 ```
 
@@ -841,18 +875,28 @@ pd.read_sql(q5, cnx)
 
 
 
+### Question 6: Find the names and ids of all the pokemon that have more than 1 type. 
+
 
 ```python
-# q6: Find the names and ids of all the pokemon that have more than 1 type. 
-q6 = ''
+# Enter appropriate SQL code within the quotes
+q6 = '''
+
+'''
 pd.read_sql(q6, cnx)
 ```
 
 
 ```python
 # __SOLUTION__
-# q6: Find the names and ids the pokemon that have more than 1 type.
-q6 = 'SELECT pokemon.id, pokemon.name FROM pokemon INNER JOIN pokemon_types ON pokemon.id = pokemon_types.pokemon_id GROUP BY pokemon_id HAVING COUNT(pokemon_id) > 1'
+q6 = '''
+SELECT pokemon.id, pokemon.name
+FROM pokemon
+INNER JOIN pokemon_types
+    ON pokemon.id = pokemon_types.pokemon_id
+GROUP BY pokemon_id
+HAVING COUNT(pokemon_id) > 1
+'''
 pd.read_sql(q6, cnx)
 ```
 
@@ -944,18 +988,26 @@ pd.read_sql(q6, cnx)
 
 
 
+### Question 7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
+
 
 ```python
-# q7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
-q7 = ''
+# Enter appropriate SQL code within the quotes
+q7 = '''
+
+'''
 pd.read_sql(q7, cnx)
 ```
 
 
 ```python
 # __SOLUTION__
-# q7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
-q7 = 'SELECT COUNT(pokemon_id) AS num_pokemon, type_id FROM pokemon_types GROUP BY type_id ORDER BY num_pokemon DESC LIMIT 1'
+q7 = '''
+SELECT COUNT(pokemon_id) AS num_pokemon, type_id
+FROM pokemon_types
+GROUP BY type_id
+ORDER BY num_pokemon DESC
+LIMIT 1'''
 pd.read_sql(q7, cnx)
 ```
 
