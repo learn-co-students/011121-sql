@@ -52,52 +52,76 @@ import sqlite3
 cnx = sqlite3.connect('data/pokemon.db')
 ```
 
+### Question 1: Find all the pokemon on the "pokemon" table. Display all columns.
+
 
 ```python
-# q1: Find all the pokemon on the "pokemon" table. Display all columns. 
+# Enter appropriate SQL code within the quotes
 q1 = ''
 pd.read_sql(q1, cnx)
 ```
 
+### Question 2: Find all the rows from the "pokemon_types" table where the type_id is 3.
+
 
 ```python
-# q2: Find all the rows from the "pokemon_types" table where the type_id is 3.
+# Enter appropriate SQL code within the quotes
 q2 = ''
 pd.read_sql(q2, cnx)
 ```
 
+### Question 3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
+
 
 ```python
-# q3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
-q3 = ''
+# Enter appropriate SQL code within the quotes
+q3 = '''
+
+'''
 pd.read_sql(q3, cnx)
 ```
 
+### Question 4: Find the names of all pokemon that have the "psychic" type.
+
 
 ```python
-# q4: Find the names of all pokemon that have the "psychic" type.
-q4 = ''
-# pd.read_sql(q4, cnx)
+# Enter appropriate SQL code within the quotes
+q4 = '''
+
+'''
+pd.read_sql(q4, cnx)
 ```
 
+### Question 5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
+
 
 ```python
-# q5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
-q5 = ''
+# Enter appropriate SQL code within the quotes
+q5 = '''
+
+'''
 pd.read_sql(q5, cnx)
 ```
 
+### Question 6: Find the names and ids of all the pokemon that have more than 1 type. 
+
 
 ```python
-# q6: Find the names and ids of all the pokemon that have more than 1 type. 
-q6 = ''
+# Enter appropriate SQL code within the quotes
+q6 = '''
+
+'''
 pd.read_sql(q6, cnx)
 ```
 
+### Question 7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
+
 
 ```python
-# q7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
-q7 = ''
+# Enter appropriate SQL code within the quotes
+q7 = '''
+
+'''
 pd.read_sql(q7, cnx)
 ```
 
