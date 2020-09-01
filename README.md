@@ -12,71 +12,32 @@ The schema of `pokemon.db` is as follows:
 
 <img src="data/pokemon_db.png" alt="db schema" style="width:500px;"/>
 
-Assign your SQL queries as strings to the variables `q1`, `q2`, etc. and run the cells at the end of this section to print your results as Pandas DataFrames.
+### How to fill out answers in this checkpoint
 
-- `q1`: Find all the pokemon on the "pokemon" table. Display all columns.  
+Assign your SQL queries as strings to the variables `q1`, `q2`, etc. 
 
-  
-- `q2`: Find all the rows from the "pokemon_types" table where the type_id is 3.
-
-
-- `q3`: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
-
-
-- `q4`: Find the names of all pokemon that have the "psychic" type.
-
-
-- `q5`: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
-
-
-- `q6`: Find the names and ids of all the pokemon that have more than 1 type.
-
-
-- `q7`: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
+We provide starter code to copy and paste in your answer cell:
+- for each question, your sql query as a string will be assigned to a variable named `q`+`the numeral of the question` 
+   - for example, for question 2: ```q2 = 'your sql query as a string here' ```
+   
+   
+- we also provide starter code to call that sql query string and convert the data into a pandas dataframe so you can check your work
+   - for example, also for quesiton 2: `pd.read_sql(q2, cnx)`
+   
+   
+**What you need to do:**
+- Copy/paste both lines of the starter code into your answer cell
+- Figure out your sql query, write it as a string, and assign it to the `q` variable in the starter code
+- Run the `pd.read_sql` starter code at the bottom of your answer cell without altering it in order to check your work
 
 
 **Important note on syntax**: use `double quotes ""` when quoting strings **within** your query and wrap the entire query in `single quotes ''`.
-
-**DO NOT MODIFY THE PYTHON CODE BELOW (e.g. `pd.read_sql`). YOU ONLY NEED TO MODIFY THE SQL QUERY STRINGS.**
 
 
 ```python
 # Run this cell without changes
 import pandas as pd
 import sqlite3
-```
-
-
-```python
-### BEGIN SOLUTION
-
-
-from test_scripts.test_class import Test
-test = Test()
-
-# import the necessary libraries
-import pandas as pd
-import sqlite3
-
-test.save()
-
-
-
-### END SOLUTION
-```
-
-
-```python
-### BEGIN HIDDEN TESTS
-
-
-from test_scripts.test_class import Test
-test = Test()
-
-test.run_test()
-
-
-### END HIDDEN TESTS
 ```
 
 
@@ -85,22 +46,33 @@ test.run_test()
 cnx = sqlite3.connect('data/pokemon.db')
 ```
 
-### Question 1: Find all the pokemon on the "pokemon" table. Display all columns.
+### Question 1: Find all the pokemon on the `pokemon` table. 
+### Display all columns.
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q1
+# pd.read_sql(q1, cnx) will pull the data and print a dataframe so you can check your work
+
+q1 = ''
+pd.read_sql(q1, cnx)
+```
 
 
 ```python
 ### BEGIN SOLUTION
 
-
 from test_scripts.test_class import Test
 test = Test()
 
 q1 = 'SELECT * FROM pokemon'
-pd.read_sql(q1, cnx)
+df1 = pd.read_sql(q1, cnx)
 
-test.save()
+test.save(df1.columns, 'df1_columns')
+test.save(df1, 'df1')
 
-
+df1.head()
 
 ### END SOLUTION
 ```
@@ -135,7 +107,7 @@ test.save()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>1</td>
       <td>bulbasaur</td>
       <td>64</td>
@@ -143,7 +115,7 @@ test.save()
       <td>7</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>2</td>
       <td>ivysaur</td>
       <td>142</td>
@@ -151,7 +123,7 @@ test.save()
       <td>10</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>3</td>
       <td>venusaur</td>
       <td>236</td>
@@ -159,7 +131,7 @@ test.save()
       <td>20</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>4</td>
       <td>charmander</td>
       <td>62</td>
@@ -167,98 +139,71 @@ test.save()
       <td>6</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>5</td>
       <td>charmeleon</td>
       <td>142</td>
       <td>190</td>
       <td>11</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>146</th>
-      <td>147</td>
-      <td>dratini</td>
-      <td>60</td>
-      <td>33</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>147</th>
-      <td>148</td>
-      <td>dragonair</td>
-      <td>147</td>
-      <td>165</td>
-      <td>40</td>
-    </tr>
-    <tr>
-      <th>148</th>
-      <td>149</td>
-      <td>dragonite</td>
-      <td>270</td>
-      <td>2100</td>
-      <td>22</td>
-    </tr>
-    <tr>
-      <th>149</th>
-      <td>150</td>
-      <td>mewtwo</td>
-      <td>306</td>
-      <td>1220</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <th>150</th>
-      <td>151</td>
-      <td>mew</td>
-      <td>270</td>
-      <td>40</td>
-      <td>4</td>
-    </tr>
   </tbody>
 </table>
-<p>151 rows × 5 columns</p>
 </div>
 
 
 
 
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(pd.read_sql(q1, cnx).columns, 
+              'df1_columns',
+              "Looks like you didn't have the right columns?"
+             )
+
+test.run_test(pd.read_sql(q1, cnx), 
+              'df1',
+              "Looks like you didn't have the right rows?"
+             )
 
 
 ### END HIDDEN TESTS
 ```
 
-### Question 2: Find all the rows from the "pokemon_types" table where the type_id is 3.
+### Question 2: Find all the rows from the "pokemon_types" table where the `type_id` is 3.
+### Display `id`, `pokemon_id`, `type_id`
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q2
+# pd.read_sql(q2, cnx) will pull the data and print a dataframe so you can check your work
+
+q2 = ''
+pd.read_sql(q2, cnx)
+```
 
 
 ```python
 ### BEGIN SOLUTION
 
-
 from test_scripts.test_class import Test
 test = Test()
-
+    
 q2 = 'SELECT * FROM pokemon_types WHERE type_id = 3'
-pd.read_sql(q2, cnx)
+df2 = pd.read_sql(q2, cnx)
 
-test.save()
+test.save(df2.columns, 'df2_columns')
+test.save(df2, 'df2')
 
-
+df2.head()
 
 ### END SOLUTION
 ```
@@ -291,117 +236,33 @@ test.save()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>10</td>
       <td>6</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>17</td>
       <td>12</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>25</td>
       <td>16</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>27</td>
       <td>17</td>
       <td>3</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>29</td>
       <td>18</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>33</td>
-      <td>21</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>35</td>
-      <td>22</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>59</td>
-      <td>41</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>61</td>
-      <td>42</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>123</td>
-      <td>83</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>125</td>
-      <td>84</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>127</td>
-      <td>85</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>178</td>
-      <td>123</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>187</td>
-      <td>130</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>205</td>
-      <td>142</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>208</td>
-      <td>144</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>210</td>
-      <td>145</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>212</td>
-      <td>146</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>216</td>
-      <td>149</td>
       <td>3</td>
     </tr>
   </tbody>
@@ -412,19 +273,44 @@ test.save()
 
 
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(pd.read_sql(q2, cnx).columns,
+              'df2_columns',
+              'looks like you didn"t include id, pokemon_id, and type_id?'
+)
+
+test.run_test(pd.read_sql(q2, cnx),
+              'df2',
+              "looks like you didn't have the right rows?"
+)
 
 
 ### END HIDDEN TESTS
 ```
 
-### Question 3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
+### Question 3: Find all the rows from the "pokemon_types" table where the associated type is "water". 
+
+- Do so **without** hard-coding the id of the "water" type.  Use only the `name` field in the `types` table.
+
+- Include `id`, `pokemon_id` and `type_id` in the view of the data.  IOW, as the columns of the printed-out dataframe. 
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q3
+# pd.read_sql(q3, cnx) will pull the data and print a dataframe so you can check your work
+
+q3 = ''
+pd.read_sql(q3, cnx)
+```
 
 
 ```python
@@ -441,11 +327,13 @@ INNER JOIN types
     ON types.id = pokemon_types.type_id
 WHERE types.name = "water"
 '''
-pd.read_sql(q3, cnx)
+df3 = pd.read_sql(q3, cnx)
 
-test.save()
+test.save(len(df3), 'df3_length')
+test.save(df3.columns, 'df3_columns')
+test.save(df3, 'df3')
 
-
+df3.head()
 
 ### END SOLUTION
 ```
@@ -478,195 +366,33 @@ test.save()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>11</td>
       <td>7</td>
       <td>11</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>12</td>
       <td>8</td>
       <td>11</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>13</td>
       <td>9</td>
       <td>11</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>80</td>
       <td>54</td>
       <td>11</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>81</td>
       <td>55</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>86</td>
-      <td>60</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>87</td>
-      <td>61</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>88</td>
-      <td>62</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>102</td>
-      <td>72</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>104</td>
-      <td>73</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>114</td>
-      <td>79</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>116</td>
-      <td>80</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>128</td>
-      <td>86</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>129</td>
-      <td>87</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>133</td>
-      <td>90</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>134</td>
-      <td>91</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>146</td>
-      <td>98</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>147</td>
-      <td>99</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>168</td>
-      <td>116</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>169</td>
-      <td>117</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>170</td>
-      <td>118</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>171</td>
-      <td>119</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>172</td>
-      <td>120</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>173</td>
-      <td>121</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>185</td>
-      <td>129</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>186</td>
-      <td>130</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>188</td>
-      <td>131</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>192</td>
-      <td>134</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>197</td>
-      <td>138</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>199</td>
-      <td>139</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>201</td>
-      <td>140</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>203</td>
-      <td>141</td>
       <td>11</td>
     </tr>
   </tbody>
@@ -677,19 +403,45 @@ test.save()
 
 
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(len(pd.read_sql(q3, cnx)),
+              'df3_length',
+              "looks like you didn't have the right number of rows?"
+)
+
+test.run_test(pd.read_sql(q3, cnx).columns,
+              'df3_columns',
+              "looks like you didn't have `id`, `pokemon_id` and `type_id` as the columns?"
+             )
+
+test.run_test(pd.read_sql(q3, cnx),
+              'df3',
+              "looks like you had the wrong values?"
+             )
 
 
 ### END HIDDEN TESTS
 ```
 
 ### Question 4: Find the names of all pokemon that have the "psychic" type.
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q4
+# pd.read_sql(q4, cnx) will pull the data and print a dataframe so you can check your work
+
+q4 = ''
+pd.read_sql(q4, cnx)
+```
 
 
 ```python
@@ -708,9 +460,10 @@ INNER JOIN types
     ON types.id = pokemon_types.type_id
 WHERE types.name = "psychic"
 '''
-pd.read_sql(q4, cnx)
+df4 = pd.read_sql(q4, cnx)
 
-test.save()
+test.save(len(df4), 'df4_length')
+test.save(df4, 'df4')
 
 
 
@@ -718,107 +471,46 @@ test.save()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>abra</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>kadabra</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>alakazam</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>slowpoke</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>slowbro</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>drowzee</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>hypno</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>exeggcute</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>exeggutor</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>starmie</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>mr-mime</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>jynx</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>mewtwo</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>mew</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(len(pd.read_sql(q4, cnx)),
+              'df4_length',
+              'looks like you had the wrong number of names?'
+             )
+
+test.run_test(pd.read_sql(q4, cnx),
+              'df4',
+              'looks like you had the wrong names?'
+             )
 
 
 ### END HIDDEN TESTS
 ```
 
-### Question 5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
+### Question 5: Find the average weight for each type. 
+
+#### Order the results from highest weight to lowest weight. 
+
+#### Display average weight as `AVG(weight)` and each type as `name`.  
+IOW, the columns in the dataframe should be `AVG(weight)` and `name`
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q5
+# pd.read_sql(q5, cnx) will pull the data and print a dataframe so you can check your work
+
+q5 = ''
+pd.read_sql(q5, cnx)
+```
 
 
 ```python
@@ -838,9 +530,11 @@ INNER JOIN types
 GROUP BY types.name
 ORDER BY AVG(weight) DESC
 '''
-pd.read_sql(q5, cnx)
+df5 = pd.read_sql(q5, cnx)
 
-test.save()
+test.save(len(df5), 'df5_length')
+test.save(df5.columns, 'df5_columns')
+test.save(df5, 'df5')
 
 
 
@@ -848,137 +542,48 @@ test.save()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>AVG(weight)</th>
-      <th>name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1137.000000</td>
-      <td>ice</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>930.454545</td>
-      <td>rock</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>799.357143</td>
-      <td>ground</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>766.000000</td>
-      <td>dragon</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>612.473684</td>
-      <td>flying</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>550.071429</td>
-      <td>psychic</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>542.500000</td>
-      <td>fighting</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>536.750000</td>
-      <td>water</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>500.863636</td>
-      <td>normal</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>480.250000</td>
-      <td>fire</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>330.000000</td>
-      <td>steel</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>317.888889</td>
-      <td>electric</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>264.857143</td>
-      <td>grass</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>239.000000</td>
-      <td>fairy</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>238.545455</td>
-      <td>poison</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>229.916667</td>
-      <td>bug</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>135.666667</td>
-      <td>ghost</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(len(pd.read_sql(q5, cnx)),
+              'df5_length',
+              "looks like you had the wrong number of rows?"
+             )
+
+test.run_test(pd.read_sql(q5, cnx).columns,
+              'df5_columns',
+              "looks like you named the columns incorrectly?"
+             )
+
+test.run_test(pd.read_sql(q5, cnx),
+              'df5',
+              "looks like you had the wrong values?"
+             )
 
 
 ### END HIDDEN TESTS
 ```
 
 ### Question 6: Find the names and ids of all the pokemon that have more than 1 type. 
+
+#### The two columns in the view of the data should be `id` and `name`
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q6
+# pd.read_sql(q6, cnx) will pull the data and print a dataframe so you can check your work
+
+q6 = ''
+pd.read_sql(q6, cnx)
+```
 
 
 ```python
@@ -996,12 +601,14 @@ INNER JOIN pokemon_types
 GROUP BY pokemon_id
 HAVING COUNT(pokemon_id) > 1
 '''
-pd.read_sql(q6, cnx)
+df6 = pd.read_sql(q6, cnx)
 
-test.save()
+test.save(len(df6), 'len_df6')
+test.save(df6.columns, 'col_df6')
+test.save(df6, 'df6')
 
 
-
+df6.head()
 ### END SOLUTION
 ```
 
@@ -1032,82 +639,78 @@ test.save()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>1</td>
       <td>bulbasaur</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>2</td>
       <td>ivysaur</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>3</td>
       <td>venusaur</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>6</td>
       <td>charizard</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>12</td>
       <td>butterfree</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td>142</td>
-      <td>aerodactyl</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>144</td>
-      <td>articuno</td>
-    </tr>
-    <tr>
-      <th>64</th>
-      <td>145</td>
-      <td>zapdos</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>146</td>
-      <td>moltres</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>149</td>
-      <td>dragonite</td>
-    </tr>
   </tbody>
 </table>
-<p>67 rows × 2 columns</p>
 </div>
 
 
 
 
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(len(pd.read_sql(q6, cnx)),
+              'len_df6',
+              "looks like you had the wrong number of rows?"
+             )
 
+test.run_test(pd.read_sql(q6, cnx).columns,
+              'col_df6',
+              "looks like you had the wrong columns?"
+             )
+
+test.run_test(pd.read_sql(q6, cnx),
+              'df6',
+              "looks like you had the wrong values?"
+             )
 
 ### END HIDDEN TESTS
 ```
 
-### Question 7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
+### Question 7: Find the id of the type that has the most pokemon. 
+
+#### The view of the data should have the columns `num_pokemon` and `type_id`
+
+
+```python
+# Copy / paste this starter code into your answer cell
+# Put your query into a string and assign it to q7
+# pd.read_sql(q7, cnx) will pull the data and print a dataframe so you can check your work
+
+q7 = ''
+pd.read_sql(q7, cnx)
+```
 
 
 ```python
@@ -1123,11 +726,14 @@ FROM pokemon_types
 GROUP BY type_id
 ORDER BY num_pokemon DESC
 LIMIT 1'''
-pd.read_sql(q7, cnx)
 
-test.save()
+df7 = pd.read_sql(q7, cnx)
 
+test.save(len(df7), 'len_df7')
+test.save(df7.columns, 'col_df7')
+test.save(df7, 'df7')
 
+df7.head()
 
 ### END SOLUTION
 ```
@@ -1159,7 +765,7 @@ test.save()
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>33</td>
       <td>4</td>
     </tr>
@@ -1171,13 +777,29 @@ test.save()
 
 
 ```python
+# PUT ALL WORK FOR THE ABOVE QUESTION ABOVE THIS CELL
+# THIS UNALTERABLE CELL CONTAINS HIDDEN TESTS
+
 ### BEGIN HIDDEN TESTS
 
 
 from test_scripts.test_class import Test
 test = Test()
 
-test.run_test()
+test.run_test(len(pd.read_sql(q7, cnx)), 
+              'len_df7', 
+              "looks like you had the wrong length?"
+             )
+
+test.run_test(pd.read_sql(q7, cnx).columns, 
+              'col_df7', 
+              "looks like you had the wrong column names?"
+             )
+
+test.run_test(pd.read_sql(q7, cnx), 
+              'df7', 
+              "looks like you had the wrong values?"
+             )
 
 
 ### END HIDDEN TESTS
