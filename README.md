@@ -27,8 +27,7 @@ pd.read_sql(q2, cnx)
    - for example, for question 2: ```q2 = 'your sql query as a string here' ```
    - if your query runs multiple lines, use the world-famous "triple ticks", as below:
        ``` 
-       q2 = 
-       '''
+       q2 = '''
        a query
        that runs
        multiple lines
