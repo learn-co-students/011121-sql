@@ -48,10 +48,35 @@ import sqlite3
 
 
 ```python
-# __SOLUTION__ 
+### BEGIN SOLUTION
+
+
+from test_scripts.test_class import Test
+test = Test()
+
 # import the necessary libraries
 import pandas as pd
 import sqlite3
+
+test.save()
+
+
+
+### END SOLUTION
+```
+
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
 ```
 
 
@@ -60,26 +85,24 @@ import sqlite3
 cnx = sqlite3.connect('data/pokemon.db')
 ```
 
-
-```python
-# __SOLUTION__ 
-cnx = sqlite3.connect('data/pokemon.db')
-```
-
 ### Question 1: Find all the pokemon on the "pokemon" table. Display all columns.
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q1 = ''
-pd.read_sql(q1, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__ 
+from test_scripts.test_class import Test
+test = Test()
+
 q1 = 'SELECT * FROM pokemon'
 pd.read_sql(q1, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -206,20 +229,38 @@ pd.read_sql(q1, cnx)
 
 
 
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
+
 ### Question 2: Find all the rows from the "pokemon_types" table where the type_id is 3.
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q2 = ''
-pd.read_sql(q2, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__ 
+from test_scripts.test_class import Test
+test = Test()
+
 q2 = 'SELECT * FROM pokemon_types WHERE type_id = 3'
 pd.read_sql(q2, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -369,20 +410,30 @@ pd.read_sql(q2, cnx)
 
 
 
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
+
 ### Question 3: Find all the rows from the "pokemon_types" table where the associated type is "water". Do so without hard-coding the id of the "water" type, using only the name.
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q3 = '''
-
-'''
-pd.read_sql(q3, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__ 
+from test_scripts.test_class import Test
+test = Test()
+
 q3 = '''
 SELECT pokemon_types.*
 FROM pokemon_types
@@ -391,6 +442,12 @@ INNER JOIN types
 WHERE types.name = "water"
 '''
 pd.read_sql(q3, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -618,20 +675,30 @@ pd.read_sql(q3, cnx)
 
 
 
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
+
 ### Question 4: Find the names of all pokemon that have the "psychic" type.
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q4 = '''
-
-'''
-pd.read_sql(q4, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__ 
+from test_scripts.test_class import Test
+test = Test()
+
 q4 = '''
 SELECT pokemon.name
 FROM pokemon
@@ -642,6 +709,12 @@ INNER JOIN types
 WHERE types.name = "psychic"
 '''
 pd.read_sql(q4, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -731,20 +804,30 @@ pd.read_sql(q4, cnx)
 
 
 
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
+
 ### Question 5: Find the average weight for each type. Order the results from highest weight to lowest weight. Display the type name next to the average weight.
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q5 = '''
-
-'''
-pd.read_sql(q5, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__ 
+from test_scripts.test_class import Test
+test = Test()
+
 q5 = '''
 SELECT AVG(weight), types.name
 FROM pokemon
@@ -756,6 +839,12 @@ GROUP BY types.name
 ORDER BY AVG(weight) DESC
 '''
 pd.read_sql(q5, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -875,20 +964,30 @@ pd.read_sql(q5, cnx)
 
 
 
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
+
 ### Question 6: Find the names and ids of all the pokemon that have more than 1 type. 
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q6 = '''
-
-'''
-pd.read_sql(q6, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__
+from test_scripts.test_class import Test
+test = Test()
+
 q6 = '''
 SELECT pokemon.id, pokemon.name
 FROM pokemon
@@ -898,6 +997,12 @@ GROUP BY pokemon_id
 HAVING COUNT(pokemon_id) > 1
 '''
 pd.read_sql(q6, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -988,20 +1093,30 @@ pd.read_sql(q6, cnx)
 
 
 
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
+
 ### Question 7: Find the id of the type that has the most pokemon. Display type_id next to the number of pokemon having that type. 
 
 
 ```python
-# Enter appropriate SQL code within the quotes
-q7 = '''
-
-'''
-pd.read_sql(q7, cnx)
-```
+### BEGIN SOLUTION
 
 
-```python
-# __SOLUTION__
+from test_scripts.test_class import Test
+test = Test()
+
 q7 = '''
 SELECT COUNT(pokemon_id) AS num_pokemon, type_id
 FROM pokemon_types
@@ -1009,6 +1124,12 @@ GROUP BY type_id
 ORDER BY num_pokemon DESC
 LIMIT 1'''
 pd.read_sql(q7, cnx)
+
+test.save()
+
+
+
+### END SOLUTION
 ```
 
 
@@ -1047,3 +1168,17 @@ pd.read_sql(q7, cnx)
 </div>
 
 
+
+
+```python
+### BEGIN HIDDEN TESTS
+
+
+from test_scripts.test_class import Test
+test = Test()
+
+test.run_test()
+
+
+### END HIDDEN TESTS
+```
