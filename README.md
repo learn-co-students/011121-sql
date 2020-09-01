@@ -16,13 +16,30 @@ The schema of `pokemon.db` is as follows:
 
 Assign your SQL queries as strings to the variables `q1`, `q2`, etc. 
 
-We provide starter code to copy and paste in your answer cell:
-- for each question, your sql query as a string will be assigned to a variable named `q`+`the numeral of the question` 
+We provide starter code to copy and paste in your answer cell.  
+For example, for question 2, the starter code looks like this:
+```
+q2 = '' 
+pd.read_sql(q2, cnx)
+```
+
+- for each question, save your sql query as a string assigned to a variable named `q`+`the numeral of the question` 
    - for example, for question 2: ```q2 = 'your sql query as a string here' ```
+   - if your query runs multiple lines, use the world-famous "triple ticks", as below:
+       ``` 
+       q2 = 
+       '''
+       a query
+       that runs
+       multiple lines
+       '''
+       ```
+       
    
    
 - we also provide starter code to call that sql query string and convert the data into a pandas dataframe so you can check your work
    - for example, also for quesiton 2: `pd.read_sql(q2, cnx)`
+   - you **do not alter** this part; run as-is to check your work!
    
    
 **What you need to do:**
@@ -31,7 +48,9 @@ We provide starter code to copy and paste in your answer cell:
 - Run the `pd.read_sql` starter code at the bottom of your answer cell without altering it in order to check your work
 
 
-**Important note on syntax**: use `double quotes ""` when quoting strings **within** your query and wrap the entire query in `single quotes ''`.
+**Important note on syntax**: 
+- use `double quotes ""` when quoting strings **within** your query 
+- wrap the entire query in `single quotes ''` (if the query is on one line) or `triple ticks ''' '''` (if the query is on multiple lines).
 
 
 ```python
