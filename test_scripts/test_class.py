@@ -76,7 +76,7 @@ class Test():
         There is a Test().obj_tests_dict_kwargs attribute which contains parameters to pass to 
         type-specific assertion methods.  
 
-        The dataframe assertion method has a "check_like" parameter which ignores the sort order
+        For example: the dataframe assertion method has a "check_like" parameter which ignores the sort order
         and will assert True if identical frames sorted differently are compared.  This class 
         sets "check_like" to True by default.
 
@@ -94,6 +94,7 @@ class Test():
                 np.ndarray: np.testing.assert_array_equal,
                 pd.core.series.Series: pd.testing.assert_series_equal,
                 pd.core.frame.DataFrame: pd.testing.assert_frame_equal,
+                pd.core.indexes.base.Index: pd.testing.assert_index_equal,
                 types.MethodType: lambda x, y: x.__code__.co_code == y.__code__.co_code,
                 sklearn.neighbors._classification.KNeighborsClassifier: self.parse_knn
         }
@@ -102,6 +103,10 @@ class Test():
             np.ndarray: {},
             pd.core.series.Series: {},
             pd.core.frame.DataFrame: {'check_like': True},
+            pd.core.indexes.base.Index: {'check_names': False,
+                                         'check_exact': False,
+                                         'check_less_precise': True
+                                        },
             types.MethodType: {},
             sklearn.neighbors._classification.KNeighborsClassifier: {}
         }
@@ -252,7 +257,7 @@ class Test():
             if asserts==None:
                 assert obj == test_obj, flag
                  
-            else:
+            elif asserts=='float':
                 assert self.assert_dict[asserts](obj, test_obj, abs_tol=.01)
 
 #             self.output()
